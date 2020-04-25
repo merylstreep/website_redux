@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Theme, Typography } from "@material-ui/core";
+import { Theme, Tooltip, Typography } from "@material-ui/core";
 import { Links } from "../assets/ExternalLinks";
 import { makeStyles } from "@material-ui/core/styles";
 import { createStyles } from "@material-ui/styles";
@@ -15,7 +15,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     item: {
       paddingLeft: 24,
+      paddingRight: 24
+    },
+    comingSoon: {
+      paddingLeft: 24,
       paddingRight: 24,
+      color: "#959595"
     }
   })
 );
@@ -27,11 +32,14 @@ const NavBar: React.FC<NavBarProps> = () => {
 
   return (
     <div className={classes.nav}>
-      <div className={classes.item}>
-        <Typography>
-          <a>highlights</a>
-        </Typography>
-      </div>
+      <Tooltip title={"coming soon!"}  placement={'top'}>
+        <div className={classes.comingSoon}>
+          <Typography>
+            <a>highlights</a>
+          </Typography>
+        </div>
+      </Tooltip>
+
       <div className={classes.item}>
         <Typography>
           <a

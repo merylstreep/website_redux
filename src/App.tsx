@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import Body from "./components/body";
+import Landing from "./components/Landing";
+
 
 const App: React.FC = () => {
   return (
     <>
-      {/*<Header title={"what"} />*/}
-      <Body/>
+      <Landing />
     </>
   );
 };

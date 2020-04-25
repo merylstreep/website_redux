@@ -1,5 +1,5 @@
 :root {
-  background: #1FAE90;
+  background: whitesmoke;
   vertical-align: center;
 }
 .App {
@@ -30,9 +30,20 @@
 }
 
 body {
-  font-family: 'Roboto' ;
-  font-size: 24px;
-  color: whitesmoke;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  color: black;
+  max-width: 1300px;
+  margin: auto;
+}
+
+a {
+  border-bottom: darkturquoise;
+}
+
+a:hover {
+  background: #ffffe8;
+  cursor: pointer;
 }
 
 .App-link {

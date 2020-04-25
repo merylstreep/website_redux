@@ -1,5 +1,6 @@
-<<<<<<< HEAD
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# website_redux
+reinventing my boring self through react
 
 ## Available Scripts
 
@@ -43,7 +44,3 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-=======
-# website_redux
-reinventing my boring self through react
->>>>>>> c1b9451d166a93d1157bdc7beb9377a3264378c5

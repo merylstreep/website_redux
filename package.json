@@ -2,6 +2,7 @@
   "name": "website_redux",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://merylstreep.github.io/website_redux/",
   "dependencies": {
     "@material-ui/core": "^4.9.3",
     "@material-ui/icons": "^4.9.1",
@@ -25,10 +26,13 @@
     "typescript": "~3.7.2"
   },
   "devDependencies": {
+    "gh-pages": "^2.2.0",
     "prettier": "^1.19.1"
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

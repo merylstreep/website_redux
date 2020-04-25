@@ -2,6 +2,11 @@
 # website_redux
 reinventing my boring self through react
 
+## dev-log 
+it is very hacky i know
+seriously spent more time trying to figure out why this wasnt being redirected to its custom domain for like 6 hours and only spent 30 mins build it was the worst. 
+will update again when i comb over this trauma with my shrink
+
 ## Available Scripts
 
 In the project directory, you can run:

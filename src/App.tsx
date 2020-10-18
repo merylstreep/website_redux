@@ -1,13 +1,15 @@
 import React from "react";
 import "./App.css";
-import Landing from "./components/Landing";
-
+import {BrowserRouter as Router} from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Routes from "./components/routes";
 
 const App: React.FC = () => {
   return (
-    <>
-      <Landing />
-    </>
+    <Router>
+      <NavBar />
+      <Routes />
+    </Router>
   );
 };
 

@@ -3,13 +3,11 @@ import { Grid, Theme, Tooltip, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Links } from "../assets/ExternalLinks";
 import { createStyles } from "@material-ui/styles";
-import ring from "../assets/ring.png";
-import NavBar from "./NavBar";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      margin: 60,
+      margin: 24,
       background: "none",
       height: "100%"
     },
@@ -33,22 +31,16 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
-export interface BodyProps {}
+export interface HomeProps {}
 
-const Landing: React.FunctionComponent<BodyProps> = () => {
+export const Home: React.FunctionComponent<HomeProps> = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <img
-        src={ring}
-        alt={"i dont know what this is but looked nice"}
-        className={classes.ring}
-      />
       <Grid container className={classes.center}>
         <Grid container className={classes.nav}>
-          <Typography variant={"h3"}>harry</Typography>
-          <NavBar />
+          <Typography variant={"h3"}>harry <span style={{color: '#ea4e87'}}>(archer)</span> zhang</Typography>
         </Grid>
         <Grid>
           <br />
@@ -59,10 +51,7 @@ const Landing: React.FunctionComponent<BodyProps> = () => {
             <br />
             {`completing a thesis on `}
             <Tooltip title={`Still working out what this is myself`}>
-              <a
-                onClick={() => {
-                }}
-              >
+              <a onClick={() => {console.log('im working on this, sowwi')}}>
                 {`improved turbulence modelling using gene expression techniques`}
               </a>
             </Tooltip>
@@ -83,5 +72,3 @@ const Landing: React.FunctionComponent<BodyProps> = () => {
     </div>
   );
 };
-
-export default Landing;

@@ -1,14 +1,16 @@
 import React from "react";
-import { Route } from "react-router";
-import {About} from '../pages/about'
-import {Projects} from '../pages/projects';
+import { Route, Switch } from "react-router";
+import { Home } from "../pages/Home";
+import { Highlights } from "../pages/Highlights";
+import { AboutMe } from "../pages/AboutMe";
 
 const Routes = () => {
   return (
-    <>
-      <Route path="/about" link={About}/>
-      <Route path="/projects" link={Projects}/>
-    </>
+    <Switch>
+      {/*<Route path="/highlights" component={Highlights} />*/}
+      <Route path={"/about-me"} component={AboutMe} />
+      <Route path={"/"} component={Home} />
+    </Switch>
   );
 };
 

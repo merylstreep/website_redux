@@ -46,6 +46,10 @@ a:hover {
   cursor: pointer;
 }
 
+a:visited {
+  text-decoration: none;
+}
+
 .App-link {
   color: #61dafb;
 }

@@ -1,67 +1,85 @@
 import * as React from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Typography, Tabs, Tab } from "@material-ui/core";
 import { SectionContainer } from "../components/SectionContainer";
+import { useCallback, useState } from "react";
 
 interface AboutMeProps {}
 
+interface TabPanelProps {
+  value: number;
+  index: number;
+}
+
+const TabPanel: React.FC<TabPanelProps> = ({ value, index, children }) => {
+  return (
+    <>
+      {value === index && (
+        <div key={index} style={{ minHeight: "700px" }}>
+          {children}
+        </div>
+      )}
+    </>
+  );
+};
+
 export const AboutMe: React.FC<AboutMeProps> = () => {
+  const [value, setValue] = useState(0);
+
+  const handleChangeValue = useCallback(
+    (e, newVal) => {
+      setValue(newVal);
+    },
+    [setValue]
+  );
+
   return (
     <>
       <SectionContainer>
-        <Typography variant={"h4"} style={{color : '#3ea98e'}}>
+        <Typography variant={"h4"} style={{ color: "#3ea98e" }}>
           what im about
         </Typography>
         <Typography variant={"body2"}>
-          i love the title of this section because it feels so hip, what am i
-          about? its a question i've been asking myself for a long time, and
-          something i (think) i'm getting better at articulating
-        </Typography>
-        <br />
-        <Typography variant={"body2"}>
-          to give you an overview of where i'm at, i'll tell you that i've
-          divined my life values into three buckets:
+          let me be open with you for a second and say that i'm still working
+          out the whole thing about self-identity but i've boiled down my life
+          into three core values:
         </Typography>
         <ul id={"list-of-values"}>
           <li id={"ambitious"} key={"ambitious"}>
-            <Typography variant={"body2"}> to live ambitiously</Typography>
+            <Typography variant={"body2"}> ambition</Typography>
           </li>
           <li id={"confidence"} key={"confidence"}>
-            <Typography variant={"body2"}>to live with confidence</Typography>
+            <Typography variant={"body2"}> confidence</Typography>
           </li>
           <li id={"legacy"} key={"legacy"}>
-            <Typography variant={"body2"}>to live my legacy</Typography>
+            <Typography variant={"body2"}>and legacy</Typography>
           </li>
         </ul>
         <Typography variant={"body2"}>
-          this all came after reading Brené Brown's book Dare to Lead, which is
-          more of a leadership book than anything. i definitely found myself
-          reflecting on my previous roles and began to see the holes in my
-          leadership and character - but the themes explored in this book target
-          a shared experience that anyone looking to be more courageous can
-          relate to
+          these are the pillars of my decision making, my passion, my drive, and
+          my work. as a space nerd i love to understand them like this: to live
+          ambitiously is to want to go to the moon. to live confidently is to
+          believe in getting to the moon. and to live my legacy is to be on the
+          moon. i think it also ties in to the whole start-upy idea of
+          'moonshots' too, which is nice
         </Typography>
         <br />
         <Typography variant={"body2"}>
-          the point of me bringing this up is that in this book she makes
-          mention of how we only have one true set of values; that the
-          compartmentalisation of values in professional and personal contexts
-          is misguided and that we should make an effort to define our core
-          values so that we can understand our decision making and thought
-          processes better (it makes more sense when she says it). the reason i
-          want to mention this is literally because i think this is so important
-          and i want to share with you my north star in life
+          i think a lot of my close friends share these values, or view life in
+          some semblance to the above. i gravitate to these kinds of
+          personalities for the opportunity to learn, grow, and gain
+          perspective. im always down to have one too many hits and watch the
+          ego crumble!
         </Typography>
         <br />
-
-        <Typography variant={"subtitle1"} color={"textSecondary"}>
-          ... anyway, to put it simply
-        </Typography>
-        <Typography variant={"body2"} align={"right"}>
-          i would like to go to the moon
+        <Typography variant={"body2"}>
+          ultimately i'm here to do good work for the purpose of providing for
+          those who i love, those who love me, have made tough sacrifices and
+          allowed me space in their lives the peace of mind that we will be
+          alright. i also have two lab crosses i need to support the dreams of
         </Typography>
       </SectionContainer>
       <SectionContainer>
-        <Typography variant={"h4"} style={{color : '#0184b7'}}>
+        <Typography variant={"h4"} style={{ color: "#0184b7" }}>
           growing up
         </Typography>
         <Typography variant={"body2"}>
@@ -86,94 +104,187 @@ export const AboutMe: React.FC<AboutMeProps> = () => {
         </Typography>
         <br />
         <Typography variant={"body2"}>
-          my mother often recalls fond memories of me being a handful. one time
-          my she told me to only have half a panadol for an elbow injury, but i
-          decided to limit test that and have the whole 30 pill cartridge. i
-          woke up in a hospital
+          my mother likes to recall 'fond' memories of my adolescence and laugh
+          about them with friends. one time my she told me to only have half a
+          panadol for an elbow pain, but i decided to limit test the whole 30
+          pill cartridge. i woke up in a hospital
         </Typography>
         <Typography variant={"body2"}>
           another time i was watching an acrobatics show where they definitely
-          tell you "not to try this at home", and somersaulted (with grace) into
-          a door frame. i woke up in a hospital
+          tell you "not to try this at home", and somersaulted with grace into a
+          steel door frame. i woke up in a hospital
         </Typography>
         <Typography variant={"body2"}>
-          and another time, out of my best judgement as a 10 year old , i
-          decided to jam my hand into an elevator door. and as it began moving,
-          caused quite the scene. i did not wake up in a hospital on this
-          occasion mainly because mother was so humiliated she just wanted me to
-          shut up
+          there was another time where out of my best judgement as a 10 year old
+          i decided to jam my hand into an elevator door and, as it began
+          moving, caused quite the scene. you guessed it: hospital.
         </Typography>
         <br />
         <Typography variant={"body2"}>
-          there are a tonne of stories like that been been stockpiled over the
-          last few years too (a recent one involves making a plasma cutter with
-          graphite and AA batteries). core to them all is poor risk assessment,
-          but beneath that: experimentation! i love doing things, sometimes new
-          sometimes dumb
+          she tells a lot of these a lot of the time which makes me question
+          their authenticity. i mean, i don't recall my childhood at all. when
+          people ask what i did i tell them in all honesty that i dont think
+          remember anything until 14 years old. maybe its trauma maybe its brain
+          damage! haha, kidding
+        </Typography>
+        <br />
+        <Typography variant={"body2"}>
+          being whacky with reckless abandon was fun but its high time to
+          appreciate some good old fashioned risk management
         </Typography>
       </SectionContainer>
       <SectionContainer>
-        <Typography variant={"h4"} style={{color: '#ea4e87'}}>
+        <Typography variant={"h4"} style={{ color: "#ea4e87" }}>
           my career
         </Typography>
-        <Typography variant={"h6"}>
-          : academia
-        </Typography>
         <Typography variant={"body2"}>
-          i saw working in the labs as an extension of course work and
-          wanted to see how far the foundational concepts taught in university actually ran in
-          real science (turns out its surprisingly deep!). my work at the Flow Noise Group looked at aeroacoustics
-          (how sound is generated, propagated, and manipulated). the reason i
-          found this work interesting is that by understanding ways to manage
-          sound (from jets, airplanes, trains, etc) we can make them faster,
-          more efficient, and ultimately more economic. consider these truths:
-        </Typography>
-        <ul id={"aeroacoustics-facts"}>
-          <li id={"aero-fact-1"} key={"aero-fact-1"}>
-            <Typography variant={"body2"}>
-              sound is energy waste from a system (think of an engine, turbine,
-              or even a kite)
-            </Typography>
-          </li>
-          <li id={"aero-fact-2"} key={"aero-fact-2"}>
-            <Typography variant={"body2"}>
-              people, and things, hate loud sounds
-            </Typography>
-          </li>
-          <li id={"aero-fact-3"} key={"aero-fact-3"}>
-            <Typography variant={"body2"}>
-              if loud enough, sound can be damaging (shock waves can burst ear
-              drums, induce nausea, burst organs, etc.)
-            </Typography>
-          </li>
-        </ul>
-        <Typography variant={"body2"}>
-          it then follows that if we mitigate sound losses we can introduce
-          faster, more efficient, and less disturbing commercial vehicles into
-          our transport networks. a famous example of this was the Concorde
-          which at its peak flew at 1.2x the speed of sound (the Concorde
-          ultimately died off because of insane operating costs - but i'd gander
-          to say technology has evolved enough to support something like it
-          again).
+          if we're being technical about it, i've already been in industry for 4
+          years. i started in aerospace academia back in second year at 19 years
+          old - realised it wasn't for me, moved on to tech consulting where i
+          also didnt fit at the time, and now im in software engineering. i'll
+          summarise the important bits below, followed by a take on whats next.
         </Typography>
         <br />
-
-        <Typography variant={"body2"} color={"textSecondary"}>
-          the faster we go, the less time we spend in transit. the less time
-          we spend in transit, the more time we can spend doing the things
-          that matter. the more time spent on doing the things that matter, the
-          stronger communities, businesses, and economies become.
-        </Typography>
-        <Typography variant={"body2"}>
-
-        </Typography>
-        <br />
-        <Typography variant={"body2"} align={"right"}>
-          i think i've been pretty lucky with the opportunities i've had. but
-          i'm conscious of the hard work, dedication, and sacrifices behind that
-          luck too.
-        </Typography>
-        <br />
+        <Tabs value={value} onChange={handleChangeValue}>
+          <Tab
+            label={<span style={{ textTransform: "none" }}>academia</span>}
+            value={0}
+          />
+          <Tab
+            label={
+              <span style={{ textTransform: "none" }}>software engg.</span>
+            }
+            value={1}
+          />
+          <Tab
+            label={<span style={{ textTransform: "none" }}>the future</span>}
+            value={2}
+          />
+        </Tabs>
+        <TabPanel value={value} index={0}>
+          <Typography variant={"body2"}>
+            as a young padawan i was keen to see how far the fundamentals of
+            thermodynamics and fluid mechanics i sponged up ran in real science
+            and asked around the faculty for an opportunity to work in the labs.
+            i got involved only because i knew one of the lead researchers from
+            a friend's dad who's best friends with their partner (networking!).
+            my work was centered about aeroacoustics which is which is the study
+            of noise generation under turbulent fluid motion. it doesn't sound
+            too interesting, so to put its relevance into perspective consider
+            the following truths:
+          </Typography>
+          <ul id={"aeroacoustics-facts"}>
+            <li id={"aero-fact-1"} key={"aero-fact-1"}>
+              <Typography variant={"body2"}>
+                sound is energy waste from a system (noise from your engine are
+                mainly kinetic losses)
+              </Typography>
+            </li>
+            <li id={"aero-fact-2"} key={"aero-fact-2"}>
+              <Typography variant={"body2"}>
+                most people, and things, dislike loud sounds so they don't like
+                to make or be around loud things
+              </Typography>
+            </li>
+            <li id={"aero-fact-3"} key={"aero-fact-3"}>
+              <Typography variant={"body2"}>
+                and, the faster things go the more sound they produce (rockets
+                are louder than jets which are louder than planes which are
+                louder than trains, etc)
+              </Typography>
+            </li>
+          </ul>
+          <Typography variant={"body2"}>
+            if we simplify the total available energy of a object to its
+            potential and kinetic energy minus its losses (sound) it follows tht
+            the total available energy to move things faster increases if we
+            reduce our losses. therefore, by understanding how we can make
+            things quieter, we can make things more energy efficient and
+            ultimately faster.
+          </Typography>
+          <br />
+          <Typography variant={"body2"}>
+            the faster we go, the less time we spend in transit. the less time
+            we spend in transit, the more time we can spend doing the things
+            that matter. and doing the things that matter has positive effects
+            for communities, businesses, and economies. all this while
+            simultaneously driving cost down since energy efficiency means
+            needing less fuel.
+          </Typography>
+          <br />
+          <Typography variant={"body2"}>
+            its all pretty cool stuff. i got my hands involved on some phd and
+            thesis projects, reviewed some papers, and helped get some people
+            published. but the lifestyle just wasn't for me so i took my leave.
+          </Typography>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <Typography variant={"body2"}>
+            right now i'm a full stack engineer at a fintech start-up. im
+            working on a cool product that changes how businesses view supply
+            chain finance. there are many exciting developments down the line
+            that im excited to get a start on, and momentum is only building. i
+            love it a lot.
+          </Typography>
+          <br />
+          <Typography variant={"body2"}>
+            some of my previous work in automation and devops from my tech
+            consulting days have carried over. but i've had to relearn and
+            unlearn a lot of stuff to the point where it all feels like new.
+          </Typography>
+          <br />
+          <Typography variant={"body2"}>
+            also, even though im part time while finishing up with uni, my current
+            team trusts me with full autonomy and weight to my design decisions.
+            its been such a validating experience so far, since programming
+            always felt like my sore spot, and has done wonders for my working
+            confidence. it also still feels wild having code in production
+            that's responsible for piping bucketloads of cash through it each
+            quarter.
+          </Typography>
+          <br />
+          <Typography variant={"body2"}>
+            to balance workload and learning, my focus has shifted more towards
+            front-end work. once more time frees up i'll be looking deeper at
+            infrastructure level code. yehaw!
+          </Typography>
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <Typography variant={"body2"}>
+            i think i've been pretty lucky with the opportunities i've had. and
+            i'm really interested to see how the future pans out. i have a few
+            mid-term goals i want to get to by EOFY '21, some of which are
+            driven financially - but are nonetheless secondary to my work-life
+            satisfaction:
+          </Typography>
+          <ul id={"midterm-goals"}>
+            <li id={"buying a new car"} key={"fact-1"}>
+              <Typography variant={"body2"}>
+                getting a fresh hot-off-the-assembly-line 4WD (something like a
+                jeep defender sport) so i can really gung-ho my outdoor
+                adventures, drop me a message if you want to come along
+              </Typography>
+            </li>
+            <li id={"moving out"} key={"fact-2"}>
+              <Typography variant={"body2"}>
+                finally get around to securing a place for myself - no roomies,
+                just me and my dogs.
+              </Typography>
+            </li>
+            <li id={"climbing"} key={"fact-3"}>
+              <Typography variant={"body2"}>
+                climb a v8 indoor or 23 outdoor
+              </Typography>
+            </li>
+          </ul>
+          <Typography variant={"body2"}>
+            the name behind a company doesn't really influence my job decision.
+            i only care about whether or not i can fully engulf myself in the
+            work that needs doing, so long as its ethical. i see myself doing
+            the fun, new, and exciting! so by graduation im hoping i'll be
+            starting off towards that :)
+          </Typography>
+        </TabPanel>
       </SectionContainer>
     </>
   );

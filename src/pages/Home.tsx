@@ -40,18 +40,24 @@ export const Home: React.FunctionComponent<HomeProps> = () => {
     <div className={classes.root}>
       <Grid container className={classes.center}>
         <Grid container className={classes.nav}>
-          <Typography variant={"h3"}>harry <span style={{color: '#ea4e87'}}>(archer)</span> zhang</Typography>
+          <Typography variant={"h3"}>
+            harry <span style={{ color: "#ea4e87" }}>(archer)</span> zhang
+          </Typography>
         </Grid>
         <Grid>
           <br />
           <Typography>
             aerospace and software engineering
             <br />
-            penultimate at the university of new south wales
+            final year student at the university of new south wales
             <br />
             {`completing a thesis on `}
             <Tooltip title={`Still working out what this is myself`}>
-              <a onClick={() => {console.log('im working on this, sowwi')}}>
+              <a
+                onClick={() => {
+                  console.log("im working on it!!!");
+                }}
+              >
                 {`improved turbulence modelling using gene expression techniques`}
               </a>
             </Tooltip>

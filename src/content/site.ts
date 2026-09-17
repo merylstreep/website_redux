@@ -47,6 +47,7 @@ export const talks: Talk[] = [
     event: '40th Annual Kentucky Cancer Registry Advanced Oncology Data Specialists (ODS) Workshop',
     start: '2026-08-27',
     end: '2026-08-28',
+    location: 'Louisville, Kentucky',
   },
   {
     title: 'The Interpersonal Debt of Scale',

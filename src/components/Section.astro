@@ -6,33 +6,18 @@ interface Props {
 const { id, title } = Astro.props;
 ---
 
-<section class="section page" id={id} aria-labelledby={`${id}-title`}>
-  <h2 id={`${id}-title`} class="label">{title}</h2>
-  <div class="body">
-    <slot />
-  </div>
+<section class="section" id={id} aria-labelledby={`${id}-title`}>
+  <h2 id={`${id}-title`}>{title}</h2>
+  <slot />
 </section>
 
 <style>
   .section {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.75rem 3rem;
-    padding-block: 2.5rem;
-    border-top: 1px solid var(--rule);
-    scroll-margin-top: 1rem;
+    margin-top: var(--space-section);
+    scroll-margin-top: 1.5rem;
   }
   h2 {
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    font-size: 0.78rem;
-    padding-top: 0.35rem;
-  }
-  @media (min-width: 46rem) {
-    .section {
-      grid-template-columns: 10rem minmax(0, 1fr);
-      padding-block: 3.5rem;
-    }
+    font-size: var(--text-md);
+    margin-bottom: 1rem;
   }
 </style>

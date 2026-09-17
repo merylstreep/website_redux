@@ -14,20 +14,20 @@ const fmt = new Intl.DateTimeFormat('en-AU', { month: 'short', year: 'numeric' }
   sorted.length === 0 ? (
     <Empty what="Talks" />
   ) : (
-    <ol class="talks" reversed>
+    <ol class="talks">
       {sorted.map((t) => (
         <li>
-          <time class="label" datetime={t.date}>
+          <time class="mono muted" datetime={t.date}>
             {fmt.format(new Date(t.date))}
           </time>
           <div>
             <h3>{t.title}</h3>
-            <p class="where">
+            <p class="muted">
               {t.event}
-              {t.location && <span> · {t.location}</span>}
+              {t.location && ` · ${t.location}`}
             </p>
             {(t.slides || t.video) && (
-              <p class="links label">
+              <p class="links">
                 {t.slides && <a href={t.slides}>Slides</a>}
                 {t.video && <a href={t.video}>Video</a>}
               </p>
@@ -41,34 +41,28 @@ const fmt = new Intl.DateTimeFormat('en-AU', { month: 'short', year: 'numeric' }
 
 <style>
   .talks {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: grid;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
   li {
     display: grid;
-    grid-template-columns: 6rem minmax(0, 1fr);
-    gap: 0.25rem 1rem;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: 0.15rem 1rem;
   }
   time {
     padding-top: 0.2rem;
-    font-variant-numeric: tabular-nums;
   }
   h3 {
-    font-size: var(--step-1);
-  }
-  .where {
-    color: var(--ink-2);
-    margin: 0.15rem 0 0;
+    font-size: var(--text);
+    font-weight: 500;
   }
   .links {
     display: flex;
     gap: 1rem;
-    margin-top: 0.4rem;
+    margin-top: 0.25rem;
+    font-size: var(--text-sm);
   }
-  @media (max-width: 30rem) {
+  @media (max-width: 28rem) {
     li {
       grid-template-columns: 1fr;
     }

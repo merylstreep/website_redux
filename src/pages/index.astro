@@ -4,51 +4,35 @@ import Header from '@/components/Header.astro';
 import Section from '@/components/Section.astro';
 import TalkList from '@/components/TalkList.astro';
 import WorkList from '@/components/WorkList.astro';
-import LinkRow from '@/components/LinkRow.astro';
-import Dog from '@/components/Dog';
-import { person, company, about, recentWork, talks, writing, links } from '@/content/site';
-
-const writingLinks = [writing.substack, writing.zine].filter((w) => w.url);
-const contactLinks = [
-  { ...links.cal, note: 'via cal.com' },
-  ...(person.email ? [{ label: 'Email', url: `mailto:${person.email}` }] : []),
-  links.github,
-  links.linkedin,
-];
+import LinkRows from '@/components/LinkRows.astro';
+import { person, company, about, recentWork, talks, writing, contact } from '@/content/site';
 ---
 
 <Base>
   <a class="visually-hidden" href="#about">Skip to content</a>
-  <div id="top"></div>
   <Header />
 
-  <main>
-    <section class="hero page" aria-label="Introduction">
-      <h1>
-        <span class="name">{person.name}</span>
-        <span class="alt">{person.altName}</span>
+  <main class="wrap">
+    <section class="intro" id="about" aria-labelledby="name">
+      <h1 id="name">
+        {person.name} <span class="alt">{person.altName}</span>
       </h1>
-      <p class="lede">
-        {company.role} at{' '}
-        <a href={company.url} rel="noopener" target="_blank">{company.name}</a>. Talks, writing,
-        and the occasional dog.
+      <p class="muted where">
+        {company.role} at <a href={company.url}>{company.name}</a>. {person.location}.
       </p>
-      <Dog client:idle />
+      <div class="about">
+        {about.map((para) => <p set:html={para} />)}
+      </div>
     </section>
-
-    <Section id="about" title="About">
-      {about.map((para) => <p>{para}</p>)}
-    </Section>
 
     <Section id="work" title="Work">
       <div class="now">
-        <p class="label">Now</p>
-        <h3>
-          {company.role} at <a href={company.url} rel="noopener" target="_blank">{company.name}</a>
-        </h3>
-        <p>{company.blurb}</p>
+        <div class="row">
+          <h3><a href={company.url}>{company.name}</a></h3>
+          <span class="mono muted">now</span>
+        </div>
+        <p class="muted">{company.role}. {company.blurb}</p>
       </div>
-      <p class="label sub">Recent</p>
       <WorkList items={recentWork} />
     </Section>
 
@@ -57,73 +41,64 @@ const contactLinks = [
     </Section>
 
     <Section id="writing" title="Writing">
-      {
-        writingLinks.length ? (
-          <LinkRow links={writingLinks} />
-        ) : (
-          <p class="muted">Substack and zine links land here once they're live.</p>
-        )
-      }
+      <LinkRows links={writing} />
     </Section>
 
     <Section id="contact" title="Contact">
-      <LinkRow links={contactLinks} />
+      <LinkRows links={contact} />
     </Section>
   </main>
 
-  <footer class="page">
-    <p class="label">
-      {person.name} · {new Date().getFullYear()} ·{' '}
-      <a href="https://github.com/merylstreep/website_redux">source</a>
-    </p>
+  <footer class="wrap muted">
+    <span aria-hidden="true">{person.emoji}</span>
+    <span class="mono">{new Date().getFullYear()}</span>
+    <a href="https://github.com/merylstreep/website_redux">Source</a>
   </footer>
 </Base>
 
 <style>
-  .hero {
-    padding-top: clamp(3rem, 10vh, 7rem);
+  .intro {
+    padding-top: 2.5rem;
   }
   h1 {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    column-gap: 0.4em;
-    font-size: var(--step-4);
+    font-size: var(--text-lg);
     font-weight: 600;
-    font-variation-settings: 'opsz' 96, 'wdth' 92;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.015em;
   }
   .alt {
-    font-weight: 300;
+    font-weight: 400;
     color: var(--ink-2);
-    font-variation-settings: 'opsz' 96, 'wdth' 100;
-    letter-spacing: -0.01em;
+    margin-left: 0.15em;
   }
-  .lede {
-    font-size: var(--step-1);
-    margin-top: 1.25rem;
-    color: var(--ink-2);
-    max-width: 34rem;
+  .where {
+    margin-top: 0.25rem;
   }
-  .lede a {
+  .where a {
     color: var(--ink);
   }
+  .about {
+    margin-top: 1.75rem;
+  }
+  .now {
+    margin-bottom: 1.25rem;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
   .now h3 {
-    font-size: var(--step-2);
-    margin: 0.2rem 0 0.5rem;
-  }
-  .now h3 a {
-    text-decoration-thickness: 2px;
-  }
-  .sub {
-    margin-top: 2.25rem;
-    margin-bottom: 0.75rem;
-  }
-  .muted {
-    color: var(--ink-2);
+    font-size: var(--text);
+    font-weight: 500;
   }
   footer {
-    padding-block: 2.5rem 3rem;
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    margin-top: var(--space-section);
+    padding-block: 2rem 3rem;
     border-top: 1px solid var(--rule);
+    font-size: var(--text-sm);
   }
 </style>

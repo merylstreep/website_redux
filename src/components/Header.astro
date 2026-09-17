@@ -10,8 +10,10 @@ const nav = [
 ] as const;
 ---
 
-<header class="header page">
-  <a class="home" href="#top">{person.name}</a>
+<header class="header wrap">
+  <a class="home" href="/" aria-label="Home">
+    <span aria-hidden="true">{person.emoji}</span>
+  </a>
   <nav aria-label="Sections">
     <ul>
       {nav.map(([label, href]) => (
@@ -24,24 +26,22 @@ const nav = [
 <style>
   .header {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
-    gap: 1rem 2rem;
-    flex-wrap: wrap;
-    padding-block: 1.25rem;
-    font-family: var(--font-display);
-    font-size: var(--step--1);
+    gap: 1rem;
+    padding-block: 1.5rem;
+    font-size: var(--text-sm);
   }
   .home {
-    font-weight: 600;
     text-decoration: none;
+    font-size: 1.25rem;
+    line-height: 1;
   }
   ul {
     display: flex;
     gap: 1.25rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
   nav a {
     color: var(--ink-2);

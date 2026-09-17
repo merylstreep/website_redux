@@ -15,9 +15,11 @@ const { items } = Astro.props;
     <ul class="work">
       {items.map((w) => (
         <li>
-          <h3>{w.url ? <a href={w.url}>{w.title}</a> : w.title}</h3>
-          <p>{w.description}</p>
-          {w.year && <span class="label">{w.year}</span>}
+          <div class="row">
+            <h3>{w.url ? <a href={w.url}>{w.title}</a> : w.title}</h3>
+            {w.year && <span class="mono muted">{w.year}</span>}
+          </div>
+          <p class="muted">{w.description}</p>
         </li>
       ))}
     </ul>
@@ -26,20 +28,17 @@ const { items } = Astro.props;
 
 <style>
   .work {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: grid;
-    gap: 1.5rem;
+    gap: 1.25rem;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
   }
   h3 {
-    font-size: var(--step-1);
-    margin-bottom: 0.2rem;
-  }
-  h3 a {
-    text-decoration: none;
-  }
-  h3 a:hover {
-    text-decoration: underline;
+    font-size: var(--text);
+    font-weight: 500;
   }
 </style>

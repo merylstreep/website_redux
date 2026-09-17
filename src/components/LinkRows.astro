@@ -1,0 +1,46 @@
+---
+import type { LinkItem } from '@/content/site';
+
+interface Props {
+  links: LinkItem[];
+}
+const { links } = Astro.props;
+---
+
+<ul class="rows">
+  {
+    links.map((l) => (
+      <li>
+        <span class="muted">{l.label}</span>
+        <div>
+          <a href={l.url} rel="me noopener">
+            {l.handle}
+          </a>
+          {l.note && <p class="muted note">{l.note}</p>}
+        </div>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .rows {
+    display: grid;
+    gap: 0.6rem;
+  }
+  li {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 0.1rem 1rem;
+    align-items: baseline;
+  }
+  .note {
+    font-size: var(--text-sm);
+    margin-top: 0.15rem;
+  }
+  @media (max-width: 28rem) {
+    li {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

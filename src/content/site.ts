@@ -62,6 +62,22 @@ export const talks: Talk[] = [
     start: '2026-10-10',
     location: 'Milan',
   },
+  {
+    title: 'Agentic Flows in Production: The Failure Modes Nobody Warns You About',
+    event: 'MLOps World',
+    start: '2026-11-17',
+    end: '2026-11-18',
+    location: 'Austin, Texas',
+    url: 'https://mlopsworld.com',
+  },
+  {
+    title: 'Trust Starts Upstream: Why Real-World Evidence Lives or Dies on Data Quality',
+    event: 'GIANT Health',
+    start: '2026-12-07',
+    end: '2026-12-08',
+    location: 'London',
+    url: 'https://www.giant.health',
+  },
 ];
 
 export type LinkItem = {
@@ -86,7 +102,7 @@ export const contact: LinkItem[] = [
   { label: 'Book a time', handle: 'cal.com/harry-archer', url: 'https://cal.com/harry-archer' },
   ...(person.email ? [{ label: 'Email', handle: person.email, url: `mailto:${person.email}` }] : []),
   { label: 'GitHub', handle: 'merylstreep', url: 'https://github.com/merylstreep' },
-  { label: 'LinkedIn', handle: 'harry-z', url: 'https://www.linkedin.com/in/harry-z/' },
+  { label: 'LinkedIn', handle: 'just-harry', url: 'https://www.linkedin.com/in/just-harry/' },
 ];
 
 export const meta = {

@@ -6,55 +6,96 @@ interface Props {
   talks: Talk[];
 }
 const { talks } = Astro.props;
-const sorted = [...talks].sort((a, b) => b.date.localeCompare(a.date));
-const fmt = new Intl.DateTimeFormat('en-AU', { month: 'short', year: 'numeric' });
+
+const sorted = [...talks].sort((a, b) => a.start.localeCompare(b.start));
+const byYear = new Map<string, Talk[]>();
+for (const t of sorted) {
+  const y = t.start.slice(0, 4);
+  byYear.set(y, [...(byYear.get(y) ?? []), t]);
+}
+
+const day = (iso: string) => String(Number(iso.slice(8, 10)));
+const mon = (iso: string) =>
+  new Intl.DateTimeFormat('en-AU', { month: 'short', timeZone: 'UTC' }).format(new Date(iso));
+
+/** "27–28 Aug", "1–2 Oct", "10 Oct", or "30 Sep – 2 Oct" across a month boundary. */
+function range(t: Talk) {
+  if (!t.end || t.end === t.start) return `${day(t.start)} ${mon(t.start)}`;
+  if (t.start.slice(0, 7) === t.end.slice(0, 7)) return `${day(t.start)}–${day(t.end)} ${mon(t.start)}`;
+  return `${day(t.start)} ${mon(t.start)} – ${day(t.end)} ${mon(t.end)}`;
+}
 ---
 
 {
   sorted.length === 0 ? (
     <Empty what="Talks" />
   ) : (
-    <ol class="talks">
-      {sorted.map((t) => (
-        <li>
-          <time class="mono muted" datetime={t.date}>
-            {fmt.format(new Date(t.date))}
-          </time>
-          <div>
-            <h3>{t.title}</h3>
-            <p class="muted">
-              {t.event}
-              {t.location && ` · ${t.location}`}
-            </p>
-            {(t.slides || t.video) && (
-              <p class="links">
-                {t.slides && <a href={t.slides}>Slides</a>}
-                {t.video && <a href={t.video}>Video</a>}
-              </p>
-            )}
-          </div>
-        </li>
+    <div class="years">
+      {[...byYear].map(([year, list]) => (
+        <section class="year" aria-label={year}>
+          <h3 class="mono muted">{year}</h3>
+          <ol>
+            {list.map((t) => (
+              <li>
+                <time class="mono muted" datetime={t.end ? `${t.start}/${t.end}` : t.start}>
+                  {range(t)}
+                </time>
+                <div class="talk">
+                  <p class="title">{t.title}</p>
+                  <p class="muted event">
+                    {t.url ? <a href={t.url}>{t.event}</a> : t.event}
+                    {t.location && <span class="loc">{t.location}</span>}
+                  </p>
+                  {(t.slides || t.video) && (
+                    <p class="links">
+                      {t.slides && <a href={t.slides}>Slides</a>}
+                      {t.video && <a href={t.video}>Video</a>}
+                    </p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
       ))}
-    </ol>
+    </div>
   )
 }
 
 <style>
-  .talks {
+  .years {
     display: grid;
-    gap: 1.25rem;
+    gap: 1.75rem;
+  }
+  h3 {
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  ol {
+    display: grid;
+    gap: 1.1rem;
   }
   li {
     display: grid;
-    grid-template-columns: 5.5rem minmax(0, 1fr);
-    gap: 0.15rem 1rem;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: 0.1rem 1rem;
   }
   time {
-    padding-top: 0.2rem;
+    padding-top: 0.15rem;
+    white-space: nowrap;
   }
-  h3 {
-    font-size: var(--text);
+  .title {
     font-weight: 500;
+    text-wrap: pretty;
+  }
+  .event {
+    font-size: var(--text-sm);
+    margin-top: 0.15rem;
+  }
+  .loc::before {
+    content: ' · ';
   }
   .links {
     display: flex;

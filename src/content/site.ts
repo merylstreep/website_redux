@@ -30,30 +30,38 @@ export const about: string[] = [
   `Outside work I try to write and read. At the moment, I'm working on a regular zine release - so stay tuned! I also enjoy laying down in parks, physically demanding activities, and tennis.`,
 ];
 
-export type WorkItem = {
-  title: string;
-  description: string;
-  url?: string;
-  year?: string;
-};
-
-export const recentWork: WorkItem[] = [
-  // TODO: add items. Example shape:
-  // { title: 'Project name', description: 'One line on what it is and why it mattered.', url: 'https://...', year: '2026' },
-];
-
 export type Talk = {
-  title: string;
-  event: string;
-  date: string; // ISO date, e.g. '2026-03-14'. Used for sorting and display.
+  title: string; // the talk
+  event: string; // the conference
+  start: string; // ISO date, e.g. '2026-10-01'
+  end?: string; // ISO date, for multi-day events
   location?: string;
+  url?: string; // event page
   slides?: string;
   video?: string;
 };
 
 export const talks: Talk[] = [
-  // TODO: add talks. Example shape:
-  // { title: 'Talk title', event: 'Conference name', date: '2026-03-14', location: 'New York', slides: 'https://...', video: 'https://...' },
+  {
+    title: 'Re-imagining the Cancer Registry: AI as a Partner to the Oncology Data Specialist',
+    event: '40th Annual Kentucky Cancer Registry Advanced Oncology Data Specialists (ODS) Workshop',
+    start: '2026-08-27',
+    end: '2026-08-28',
+  },
+  {
+    title: 'The Interpersonal Debt of Scale',
+    event: 'Monktoberfest',
+    start: '2026-10-01',
+    end: '2026-10-02',
+    location: 'Portland, Maine',
+    url: 'https://monktoberfest.com',
+  },
+  {
+    title: "Becoming a Founding Engineer: you're already ready!",
+    event: 'DevFest Milano',
+    start: '2026-10-10',
+    location: 'Milan',
+  },
 ];
 
 export type LinkItem = {

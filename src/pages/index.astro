@@ -3,9 +3,8 @@ import Base from '@/layouts/Base.astro';
 import Header from '@/components/Header.astro';
 import Section from '@/components/Section.astro';
 import TalkList from '@/components/TalkList.astro';
-import WorkList from '@/components/WorkList.astro';
 import LinkRows from '@/components/LinkRows.astro';
-import { person, company, about, recentWork, talks, writing, contact } from '@/content/site';
+import { person, about, talks, writing, contact } from '@/content/site';
 ---
 
 <Base>
@@ -21,17 +20,6 @@ import { person, company, about, recentWork, talks, writing, contact } from '@/c
         {about.map((para) => <p set:html={para} />)}
       </div>
     </section>
-
-    <Section id="work" title="Work">
-      <div class="now">
-        <div class="row">
-          <h3><a href={company.url}>{company.name}</a></h3>
-          <span class="mono muted">now</span>
-        </div>
-        <p class="muted">{company.role}. {company.blurb}</p>
-      </div>
-      <WorkList items={recentWork} />
-    </Section>
 
     <Section id="talks" title="Talks">
       <TalkList talks={talks} />
@@ -69,19 +57,6 @@ import { person, company, about, recentWork, talks, writing, contact } from '@/c
   }
   .about {
     margin-top: 1.25rem;
-  }
-  .now {
-    margin-bottom: 1.25rem;
-  }
-  .row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-  }
-  .now h3 {
-    font-size: var(--text);
-    font-weight: 500;
   }
   footer {
     display: flex;

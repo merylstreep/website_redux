@@ -63,6 +63,14 @@ export const talks: Talk[] = [
     location: 'Milan',
   },
   {
+    title: 'Empowering Health Services to Save More Lives: A Cancer Casefinding Study', // WIP title
+    event: '26th Ci4CC Cancer Center Symposium & Workshop',
+    start: '2026-11-06',
+    end: '2026-11-08',
+    location: 'Baltimore, Maryland',
+    url: 'https://www.ci4cc.org/fall-2026-workshop',
+  },
+  {
     title: 'Agentic Flows in Production: The Failure Modes Nobody Warns You About',
     event: 'MLOps World',
     start: '2026-11-17',

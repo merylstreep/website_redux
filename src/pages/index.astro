@@ -13,11 +13,11 @@ import { person, about, talks, writing, contact } from '@/content/site';
 
   <main class="wrap">
     <section class="intro" id="about" aria-labelledby="name">
-      <h1 id="name" class="serif">
+      <h1 id="name">
         {person.name} <span class="alt">{person.altName}</span>
       </h1>
       <p class="muted where">{person.location}</p>
-      <div class="about serif">
+      <div class="about">
         {about.map((para) => <p set:html={para} />)}
       </div>
     </section>
@@ -48,12 +48,12 @@ import { person, about, talks, writing, contact } from '@/content/site';
   }
   h1 {
     font-size: var(--text-name);
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.05;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.025em;
   }
   .alt {
-    font-weight: 300;
+    font-weight: 400;
     color: var(--ink-2);
     margin-left: 0.1em;
   }
@@ -62,8 +62,6 @@ import { person, about, talks, writing, contact } from '@/content/site';
   }
   .about {
     margin-top: 2rem;
-    font-size: var(--text-serif);
-    line-height: 1.55;
   }
   footer {
     display: flex;

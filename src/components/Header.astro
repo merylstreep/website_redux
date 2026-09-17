@@ -1,0 +1,53 @@
+---
+import { person } from '@/content/site';
+
+const nav = [
+  ['About', '#about'],
+  ['Work', '#work'],
+  ['Talks', '#talks'],
+  ['Writing', '#writing'],
+  ['Contact', '#contact'],
+] as const;
+---
+
+<header class="header page">
+  <a class="home" href="#top">{person.name}</a>
+  <nav aria-label="Sections">
+    <ul>
+      {nav.map(([label, href]) => (
+        <li><a href={href}>{label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    flex-wrap: wrap;
+    padding-block: 1.25rem;
+    font-family: var(--font-display);
+    font-size: var(--step--1);
+  }
+  .home {
+    font-weight: 600;
+    text-decoration: none;
+  }
+  ul {
+    display: flex;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  nav a {
+    color: var(--ink-2);
+    text-decoration: none;
+  }
+  nav a:hover {
+    color: var(--ink);
+  }
+</style>

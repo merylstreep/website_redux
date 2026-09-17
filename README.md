@@ -1,46 +1,35 @@
+# harryzhang · personal site
 
-# website_redux
-considering redoing all of this in vanilla js lol 
+Static site built with [Astro](https://astro.build) and deployed to GitHub Pages by GitHub Actions.
 
-## Available Scripts
+Live: https://merylstreep.github.io/website_redux/
 
-In the project directory, you can run:
+## Editing content
 
-### `yarn start`
+Everything on the page comes from `src/content/site.ts`: name, about copy, current company,
+recent work, talks, writing links, contact links. Edit that file, commit, push to `master`.
+The workflow in `.github/workflows/deploy.yml` builds and deploys in about a minute.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Empty lists (`recentWork`, `talks`) render a quiet "coming soon" line. Empty URLs are hidden.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Local
 
-### `yarn test`
+```sh
+pnpm install
+pnpm dev        # http://localhost:4321/website_redux/
+pnpm check      # typecheck (needs TypeScript 6.x, pinned)
+pnpm build      # output in dist/
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Layout
 
-### `yarn build`
+- `src/pages/index.astro` — the single page and its section order
+- `src/layouts/Base.astro` — html head, meta, fonts
+- `src/components/*.astro` — static pieces (header, section shell, lists)
+- `src/components/Dog.tsx` — the only client-side JavaScript: a React island for the dog on the hero. Hydrates on idle, respects `prefers-reduced-motion`.
+- `src/styles/global.css` — design tokens (light/dark via `prefers-color-scheme`), type scale, base styles
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Custom domain
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+When there is one: add a `public/CNAME` file with the domain, set `site` in `astro.config.mjs` to it,
+remove `base`, and add the domain under repo Settings → Pages. Point DNS at GitHub's Pages IPs.

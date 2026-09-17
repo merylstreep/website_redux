@@ -1,0 +1,16 @@
+---
+// Shown where content hasn't been added yet. Quiet, not apologetic.
+interface Props {
+  what: string;
+}
+const { what } = Astro.props;
+---
+
+<p class="empty">{what} coming soon.</p>
+
+<style>
+  .empty {
+    color: var(--ink-2);
+    font-style: italic;
+  }
+</style>

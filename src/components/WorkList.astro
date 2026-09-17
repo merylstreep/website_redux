@@ -1,0 +1,45 @@
+---
+import type { WorkItem } from '@/content/site';
+import Empty from './Empty.astro';
+
+interface Props {
+  items: WorkItem[];
+}
+const { items } = Astro.props;
+---
+
+{
+  items.length === 0 ? (
+    <Empty what="Recent work" />
+  ) : (
+    <ul class="work">
+      {items.map((w) => (
+        <li>
+          <h3>{w.url ? <a href={w.url}>{w.title}</a> : w.title}</h3>
+          <p>{w.description}</p>
+          {w.year && <span class="label">{w.year}</span>}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+<style>
+  .work {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+  h3 {
+    font-size: var(--step-1);
+    margin-bottom: 0.2rem;
+  }
+  h3 a {
+    text-decoration: none;
+  }
+  h3 a:hover {
+    text-decoration: underline;
+  }
+</style>

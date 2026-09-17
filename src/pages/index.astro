@@ -1,0 +1,129 @@
+---
+import Base from '@/layouts/Base.astro';
+import Header from '@/components/Header.astro';
+import Section from '@/components/Section.astro';
+import TalkList from '@/components/TalkList.astro';
+import WorkList from '@/components/WorkList.astro';
+import LinkRow from '@/components/LinkRow.astro';
+import Dog from '@/components/Dog';
+import { person, company, about, recentWork, talks, writing, links } from '@/content/site';
+
+const writingLinks = [writing.substack, writing.zine].filter((w) => w.url);
+const contactLinks = [
+  { ...links.cal, note: 'via cal.com' },
+  ...(person.email ? [{ label: 'Email', url: `mailto:${person.email}` }] : []),
+  links.github,
+  links.linkedin,
+];
+---
+
+<Base>
+  <a class="visually-hidden" href="#about">Skip to content</a>
+  <div id="top"></div>
+  <Header />
+
+  <main>
+    <section class="hero page" aria-label="Introduction">
+      <h1>
+        <span class="name">{person.name}</span>
+        <span class="alt">{person.altName}</span>
+      </h1>
+      <p class="lede">
+        {company.role} at{' '}
+        <a href={company.url} rel="noopener" target="_blank">{company.name}</a>. Talks, writing,
+        and the occasional dog.
+      </p>
+      <Dog client:idle />
+    </section>
+
+    <Section id="about" title="About">
+      {about.map((para) => <p>{para}</p>)}
+    </Section>
+
+    <Section id="work" title="Work">
+      <div class="now">
+        <p class="label">Now</p>
+        <h3>
+          {company.role} at <a href={company.url} rel="noopener" target="_blank">{company.name}</a>
+        </h3>
+        <p>{company.blurb}</p>
+      </div>
+      <p class="label sub">Recent</p>
+      <WorkList items={recentWork} />
+    </Section>
+
+    <Section id="talks" title="Talks">
+      <TalkList talks={talks} />
+    </Section>
+
+    <Section id="writing" title="Writing">
+      {
+        writingLinks.length ? (
+          <LinkRow links={writingLinks} />
+        ) : (
+          <p class="muted">Substack and zine links land here once they're live.</p>
+        )
+      }
+    </Section>
+
+    <Section id="contact" title="Contact">
+      <LinkRow links={contactLinks} />
+    </Section>
+  </main>
+
+  <footer class="page">
+    <p class="label">
+      {person.name} · {new Date().getFullYear()} ·{' '}
+      <a href="https://github.com/merylstreep/website_redux">source</a>
+    </p>
+  </footer>
+</Base>
+
+<style>
+  .hero {
+    padding-top: clamp(3rem, 10vh, 7rem);
+  }
+  h1 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.4em;
+    font-size: var(--step-4);
+    font-weight: 600;
+    font-variation-settings: 'opsz' 96, 'wdth' 92;
+    letter-spacing: -0.03em;
+  }
+  .alt {
+    font-weight: 300;
+    color: var(--ink-2);
+    font-variation-settings: 'opsz' 96, 'wdth' 100;
+    letter-spacing: -0.01em;
+  }
+  .lede {
+    font-size: var(--step-1);
+    margin-top: 1.25rem;
+    color: var(--ink-2);
+    max-width: 34rem;
+  }
+  .lede a {
+    color: var(--ink);
+  }
+  .now h3 {
+    font-size: var(--step-2);
+    margin: 0.2rem 0 0.5rem;
+  }
+  .now h3 a {
+    text-decoration-thickness: 2px;
+  }
+  .sub {
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .muted {
+    color: var(--ink-2);
+  }
+  footer {
+    padding-block: 2.5rem 3rem;
+    border-top: 1px solid var(--rule);
+  }
+</style>

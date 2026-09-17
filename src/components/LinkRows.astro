@@ -13,9 +13,13 @@ const { links } = Astro.props;
       <li>
         <span class="muted">{l.label}</span>
         <div>
-          <a href={l.url} rel="me noopener">
-            {l.handle}
-          </a>
+          {l.url ? (
+            <a href={l.url} rel="me noopener">
+              {l.handle}
+            </a>
+          ) : (
+            <span>{l.handle}</span>
+          )}
           {l.note && <p class="muted note">{l.note}</p>}
         </div>
       </li>

@@ -63,7 +63,7 @@ export const talks: Talk[] = [
     location: 'Milan',
   },
   {
-    title: 'Empowering Health Services to Save More Lives: A Cancer Casefinding Study', // WIP title
+    title: 'Empowering Health Services to Save More Lives: A Cancer Casefinding Study',
     event: '26th Ci4CC Cancer Center Symposium & Workshop',
     start: '2026-11-06',
     end: '2026-11-08',
@@ -91,7 +91,7 @@ export const talks: Talk[] = [
 export type LinkItem = {
   label: string; // what it is
   handle: string; // what's shown as the link text
-  url: string;
+  url?: string; // omit while there's nothing to link to yet
   note?: string;
 };
 
@@ -102,8 +102,11 @@ export const writing: LinkItem[] = [
     url: 'https://harryisthinking.substack.com',
     note: 'Essays on moving countries, how people treat each other, and why being certain is overrated.',
   },
-  // TODO: zine. Example shape:
-  // { label: 'Zine', handle: 'name', url: 'https://...', note: 'One line on what it is.' },
+  {
+    label: 'Zine',
+    handle: 'Second Order',
+    note: "A print zine about what today's technology sets in motion. WIP 😏",
+  },
 ];
 
 export const contact: LinkItem[] = [

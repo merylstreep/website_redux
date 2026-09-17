@@ -62,6 +62,7 @@ export const talks: Talk[] = [
     event: 'DevFest Milano',
     start: '2026-10-10',
     location: 'Milan',
+    url: 'https://2026.devfestmilano.it/it/',
   },
   {
     title: 'Empowering Health Services to Save More Lives: A Cancer Casefinding Study',

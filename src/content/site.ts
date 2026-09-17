@@ -26,8 +26,8 @@ export const company = {
 /** Paragraphs may contain <a> tags. Keep it to links only. */
 export const about: string[] = [
   `I'm Harry, my friends like to call me Haz. I'm a founding engineer at <a href="${company.url}">Fleet Technologies</a>, where we're building important platform products to harmonise and declutter noisy data on a massive scale. I'm typically across the whole stack, and the city. I like to roam.`,
-  `I grew up in Sydney and live in New York now. Before Fleet I was at Canva, where I saw up close what happens to a company, and the people in it, when it grows fast.`,
-  `Outside work I write essays at <a href="https://harryisthinking.substack.com">harryisthinking</a> on Substack, mostly about moving countries, how people treat each other, and why being certain is overrated. I also like data visualisation, etymology, and tennis.`,
+  `I grew up in Sydney and live in New York now. Before Fleet, I was at Explo, a data visualisation startup where I built their AI platform from scratch, we got acquired by Omni as a result. Yay! And before that I was at Canva where I helped start AI Studio and built out their content management and help services.`,
+  `Outside work I try to write and read. At the moment, I'm working on a regular zine release - so stay tuned! I also enjoy laying down in parks, physically demanding activities, and tennis.`,
 ];
 
 export type WorkItem = {

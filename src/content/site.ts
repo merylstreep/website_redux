@@ -105,7 +105,7 @@ export const writing: LinkItem[] = [
   {
     label: 'Zine',
     handle: 'Second Order',
-    note: "A print zine about what today's technology sets in motion. WIP 😏",
+    note: "A print zine about what today's technology sets in motion. WIP 🌱",
   },
 ];
 

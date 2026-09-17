@@ -1,46 +1,44 @@
-# harryzhang · personal site
+# harryzhang.dev
 
-Static site built with [Astro](https://astro.build) and deployed to GitHub Pages by GitHub Actions.
+Personal site. Astro, static HTML, no client JS. Deployed to GitHub Pages on every push to `master`.
 
-Live: https://harryzhang.dev (DNS on Cloudflare, must be "DNS only", not proxied, for GitHub's certificate to issue)
+## Editing
 
-## Editing content
+All content is in `src/content/site.ts`. Change it, commit, push. The site rebuilds in about a minute.
 
-Everything on the page comes from `src/content/site.ts`: name, about copy, current company,
-recent work, talks, writing links, contact links. Edit that file, commit, push to `master`.
-The workflow in `.github/workflows/deploy.yml` builds and deploys in about a minute.
+Empty lists (`recentWork`, `talks`) show "coming soon". Links with an empty URL don't render.
 
-Empty lists (`recentWork`, `talks`) render a quiet "coming soon" line. Empty URLs are hidden.
-
-## Local
+## Running locally
 
 ```sh
 pnpm install
-pnpm dev        # http://localhost:4321/
-pnpm check      # typecheck (needs TypeScript 6.x, pinned)
-pnpm build      # output in dist/
+pnpm dev      # http://localhost:4321
+pnpm check    # typecheck. Needs TypeScript 6, which is pinned; astro check doesn't work with 7 yet.
+pnpm build    # writes dist/
 ```
 
-## Layout
+## Files
 
-- `src/pages/index.astro` — the single page and its section order
-- `src/layouts/Base.astro` — html head, meta, fonts
-- `src/components/*.astro` — static pieces (header, section shell, lists)
-- `src/styles/global.css` — design tokens (light/dark via `prefers-color-scheme`), type scale, base styles
+- `src/pages/index.astro` – the page
+- `src/layouts/Base.astro` – head, meta, fonts
+- `src/components/` – header, section wrapper, lists
+- `src/styles/global.css` – colours, type, base styles. Dark mode follows the OS.
+- `.github/workflows/deploy.yml` – build and deploy
 
-## Domain
+## DNS
 
-`public/CNAME` holds `harryzhang.dev` and `site` in `astro.config.mjs` matches. Cloudflare DNS records:
+Cloudflare, all records DNS only (grey cloud). Proxying breaks GitHub's certificate.
 
-| Type  | Name | Content                  | Proxy    |
-|-------|------|--------------------------|----------|
-| A     | @    | 185.199.108.153          | DNS only |
-| A     | @    | 185.199.109.153          | DNS only |
-| A     | @    | 185.199.110.153          | DNS only |
-| A     | @    | 185.199.111.153          | DNS only |
-| CNAME | www  | merylstreep.github.io    | DNS only |
+| Type  | Name | Content               |
+|-------|------|-----------------------|
+| A     | @    | 185.199.108.153       |
+| A     | @    | 185.199.109.153       |
+| A     | @    | 185.199.110.153       |
+| A     | @    | 185.199.111.153       |
+| CNAME | www  | merylstreep.github.io |
 
-## What ships to the browser
+`public/CNAME` and `site` in `astro.config.mjs` both say `harryzhang.dev`.
 
-Zero JavaScript. The page is static HTML and CSS built from `src/content/site.ts`. Every string in
-that file is public. Comments are not shipped, but do not put anything private in a string.
+## Privacy
+
+Everything in `site.ts` ends up in the HTML. Comments don't ship, strings do.

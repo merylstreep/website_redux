@@ -13,11 +13,11 @@ import { person, about, talks, writing, contact } from '@/content/site';
 
   <main class="wrap">
     <section class="intro" id="about" aria-labelledby="name">
-      <h1 id="name">
+      <h1 id="name" class="serif">
         {person.name} <span class="alt">{person.altName}</span>
       </h1>
       <p class="muted where">{person.location}</p>
-      <div class="about">
+      <div class="about serif">
         {about.map((para) => <p set:html={para} />)}
       </div>
     </section>
@@ -37,7 +37,7 @@ import { person, about, talks, writing, contact } from '@/content/site';
 
   <footer class="wrap muted">
     <span aria-hidden="true">{person.emoji}</span>
-    <span class="mono">{new Date().getFullYear()}</span>
+    <span class="num">{new Date().getFullYear()}</span>
     <a href="https://github.com/merylstreep/website_redux">Source</a>
   </footer>
 </Base>
@@ -47,20 +47,23 @@ import { person, about, talks, writing, contact } from '@/content/site';
     padding-top: 2.5rem;
   }
   h1 {
-    font-size: var(--text-lg);
-    font-weight: 600;
-    letter-spacing: -0.015em;
+    font-size: var(--text-name);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
   }
   .alt {
-    font-weight: 400;
+    font-weight: 300;
     color: var(--ink-2);
-    margin-left: 0.15em;
+    margin-left: 0.1em;
   }
   .where {
-    margin-top: 0.25rem;
+    margin-top: 0.75rem;
   }
   .about {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+    font-size: var(--text-serif);
+    line-height: 1.55;
   }
   footer {
     display: flex;

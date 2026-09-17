@@ -33,15 +33,15 @@ function range(t: Talk) {
     <div class="years">
       {[...byYear].map(([year, list]) => (
         <section class="year" aria-label={year}>
-          <h3 class="mono muted">{year}</h3>
+          <h3 class="num muted">{year}</h3>
           <ol>
             {list.map((t) => (
               <li>
-                <time class="mono muted" datetime={t.end ? `${t.start}/${t.end}` : t.start}>
+                <time class="num muted" datetime={t.end ? `${t.start}/${t.end}` : t.start}>
                   {range(t)}
                 </time>
                 <div class="talk">
-                  <p class="title">{t.title}</p>
+                  <p class="title serif">{t.title}</p>
                   <p class="muted event">
                     {t.url ? <a href={t.url}>{t.event}</a> : t.event}
                     {t.location && <span class="loc">{t.location}</span>}
@@ -83,11 +83,13 @@ function range(t: Talk) {
     gap: 0.1rem 1rem;
   }
   time {
-    padding-top: 0.15rem;
+    padding-top: 0.25rem;
     white-space: nowrap;
   }
   .title {
+    font-size: var(--text-serif);
     font-weight: 500;
+    line-height: 1.35;
     text-wrap: pretty;
   }
   .event {

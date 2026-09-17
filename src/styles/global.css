@@ -1,5 +1,6 @@
 @import '@fontsource-variable/geist';
-@import '@fontsource-variable/geist-mono';
+@import '@fontsource-variable/newsreader/opsz.css';
+@import '@fontsource-variable/newsreader/opsz-italic.css';
 
 :root {
   color-scheme: light dark;
@@ -12,7 +13,7 @@
 
   --sans: 'Geist Variable', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', system-ui,
     sans-serif;
-  --mono: 'Geist Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+  --serif: 'Newsreader Variable', 'Songti SC', 'Noto Serif CJK SC', Georgia, serif;
 
   --measure: 40rem;
   --gutter: clamp(1.25rem, 5vw, 2rem);
@@ -21,6 +22,8 @@
   --text: 1rem;
   --text-md: 1.0625rem;
   --text-lg: 1.375rem;
+  --text-serif: 1.1875rem;
+  --text-name: clamp(2.75rem, 2.1rem + 2.2vw, 3.5rem);
 
   --space-section: 3.5rem;
 }
@@ -115,11 +118,14 @@ ol {
   color: var(--ink-2);
 }
 
-.mono {
-  font-family: var(--mono);
+.num {
   font-size: var(--text-sm);
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0;
+}
+
+.serif {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
 }
 
 .visually-hidden {

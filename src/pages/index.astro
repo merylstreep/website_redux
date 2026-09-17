@@ -16,6 +16,7 @@ import { person, about, talks, writing, contact } from '@/content/site';
       <h1 id="name">
         {person.name} <span class="alt">{person.altName}</span>
       </h1>
+      <p class="muted where">{person.location}</p>
       <div class="about">
         {about.map((para) => <p set:html={para} />)}
       </div>
@@ -55,8 +56,11 @@ import { person, about, talks, writing, contact } from '@/content/site';
     color: var(--ink-2);
     margin-left: 0.15em;
   }
+  .where {
+    margin-top: 0.25rem;
+  }
   .about {
-    margin-top: 1.25rem;
+    margin-top: 1.5rem;
   }
   footer {
     display: flex;

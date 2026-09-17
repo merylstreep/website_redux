@@ -10,23 +10,22 @@ export const person = {
   name: 'Harry Zhang',
   altName: '张 Archer',
   nickname: 'Haz',
-  title: 'Founding engineer at Fleet Health',
+  title: 'Founding engineer at Fleet Technologies',
   location: 'New York, via Sydney',
   email: '', // Optional. Leave empty to hide. If set, it is public and will get scraped.
   emoji: '🍊',
 };
 
 export const company = {
-  name: 'Fleet Health',
+  name: 'Fleet Technologies',
   url: 'https://fleethealth.com',
   role: 'Founding engineer',
-  blurb:
-    'Data platforms that run inside hospital networks, so patient data never has to leave the building.',
+  blurb: 'Platform products that harmonise and declutter noisy data at scale.',
 };
 
 /** Paragraphs may contain <a> tags. Keep it to links only. */
 export const about: string[] = [
-  `I'm Harry (Haz). I'm a founding engineer at <a href="${company.url}">Fleet Health</a>, where we build data platforms that run inside hospital networks, so patient data never has to leave the building. Most days I work across the whole stack: React and Next.js on the front, Python and FastAPI on the back, Azure underneath, and a lot of SQL against EHR systems like Epic and eClinicalWorks.`,
+  `I'm Harry, my friends like to call me Haz. I'm a founding engineer at <a href="${company.url}">Fleet Technologies</a>, where we're building important platform products to harmonise and declutter noisy data on a massive scale. I'm typically across the whole stack, and the city. I like to roam.`,
   `I grew up in Sydney and live in New York now. Before Fleet I was at Canva, where I saw up close what happens to a company, and the people in it, when it grows fast.`,
   `Outside work I write essays at <a href="https://harryisthinking.substack.com">harryisthinking</a> on Substack, mostly about moving countries, how people treat each other, and why being certain is overrated. I also like data visualisation, etymology, and tennis.`,
 ];

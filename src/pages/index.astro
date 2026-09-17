@@ -17,9 +17,6 @@ import { person, company, about, recentWork, talks, writing, contact } from '@/c
       <h1 id="name">
         {person.name} <span class="alt">{person.altName}</span>
       </h1>
-      <p class="muted where">
-        {company.role} at <a href={company.url}>{company.name}</a>. {person.location}.
-      </p>
       <div class="about">
         {about.map((para) => <p set:html={para} />)}
       </div>
@@ -70,14 +67,8 @@ import { person, company, about, recentWork, talks, writing, contact } from '@/c
     color: var(--ink-2);
     margin-left: 0.15em;
   }
-  .where {
-    margin-top: 0.25rem;
-  }
-  .where a {
-    color: var(--ink);
-  }
   .about {
-    margin-top: 1.75rem;
+    margin-top: 1.25rem;
   }
   .now {
     margin-bottom: 1.25rem;

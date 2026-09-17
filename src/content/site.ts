@@ -92,25 +92,27 @@ export type LinkItem = {
   label: string; // what it is
   handle: string; // what's shown as the link text
   url?: string; // omit while there's nothing to link to yet
-  note?: string;
+  note?: string; // may contain <a> tags
 };
+
+const calUrl = 'https://cal.com/harry-archer';
 
 export const writing: LinkItem[] = [
   {
     label: 'Substack',
     handle: 'harryisthinking',
     url: 'https://harryisthinking.substack.com',
-    note: 'Essays on moving countries, how people treat each other, and why being certain is overrated.',
+    note: 'My inconsistent personal blog.',
   },
   {
     label: 'Zine',
-    handle: 'Second Order',
-    note: "A print zine about what today's technology sets in motion. WIP 🌱",
+    handle: 'Second Order 🚧',
+    note: `A print zine about what today's technology sets in motion. If you want to get involved, or learn more <a href="${calUrl}">let's chat</a>!`,
   },
 ];
 
 export const contact: LinkItem[] = [
-  { label: 'Book a time', handle: 'cal.com/harry-archer', url: 'https://cal.com/harry-archer' },
+  { label: 'Book a time', handle: 'cal.com/harry-archer', url: calUrl },
   ...(person.email ? [{ label: 'Email', handle: person.email, url: `mailto:${person.email}` }] : []),
   { label: 'GitHub', handle: 'merylstreep', url: 'https://github.com/merylstreep' },
   { label: 'LinkedIn', handle: 'just-harry', url: 'https://www.linkedin.com/in/just-harry/' },

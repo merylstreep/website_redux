@@ -20,7 +20,7 @@ const { links } = Astro.props;
           ) : (
             <span>{l.handle}</span>
           )}
-          {l.note && <p class="muted note">{l.note}</p>}
+          {l.note && <p class="muted note" set:html={l.note} />}
         </div>
       </li>
     ))

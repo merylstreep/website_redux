@@ -9,7 +9,7 @@
   --ink: #171717;
   --ink-2: #6b6b6b;
   --rule: #e8e8e8;
-  --accent: #ea6a1f;
+  --accent: #f06414;
 
   --sans: 'Geist Variable', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', system-ui,
     sans-serif;
@@ -34,7 +34,7 @@
     --ink: #ececec;
     --ink-2: #9a9a9a;
     --rule: #262626;
-    --accent: #ff8b45;
+    --accent: #f06414;
   }
 }
 
